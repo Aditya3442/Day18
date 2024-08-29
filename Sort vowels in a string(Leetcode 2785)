@@ -1,0 +1,21 @@
+class Solution {
+    public String sortVowels(String s) {
+        int n=s.length();
+        char ch[]=s.toCharArray();
+        List<Character> list=new ArrayList<>();
+        for(int i=0;i<n;i++){
+            if(ch[i]=='a'|| ch[i]=='e' || ch[i]=='i' || ch[i]=='o' || ch[i]=='u' || ch[i]=='A'|| ch[i]=='E'|| ch[i]=='I'|| ch[i]=='O' || ch[i]=='U')
+                list.add(ch[i]);
+        }
+        Collections.sort(list);
+        int index=0;
+        for(int i=0;i<n;i++){
+            if(ch[i]=='a'|| ch[i]=='e' || ch[i]=='i' || ch[i]=='o' || ch[i]=='u' || ch[i]=='A'|| ch[i]=='E'|| ch[i]=='I'|| ch[i]=='O' || ch[i]=='U'){
+               ch[i]=list.get(index);
+               index++; 
+            }
+        }
+        
+        return String.valueOf(ch);
+    }
+}
