@@ -1,0 +1,33 @@
+class Solution {
+    public static void dfs(int i,List<List<Integer>> list,boolean[] visited){
+        visited[i]=true;
+        for(int x:list.get(i)){
+            if(!visited[x])
+                dfs(x,list,visited);
+        }
+    }
+    public int removeStones(int[][] stones) {
+        int n=stones.length;
+        boolean visited[]=new boolean[n];
+        List<List<Integer>> list=new ArrayList<>();
+        for(int i=0;i<n;i++){
+            list.add(new ArrayList<>());
+        }
+        for(int i=0;i<n;i++){
+            for(int j=i+1;j<n;j++){
+                if(stones[i][0]==stones[j][0] ||stones[i][1]==stones[j][1]){
+                    list.get(i).add(j);
+                    list.get(j).add(i);
+                }
+            }
+        }
+        int count=0;
+        for(int i=0;i<n;i++){
+            if(!visited[i]){
+                dfs(i,list,visited);
+                count++;
+            }
+        }
+        return n-count;
+    }
+}
